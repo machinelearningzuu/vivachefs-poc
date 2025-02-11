@@ -3,7 +3,6 @@ import streamlit as st
 from pathlib import Path
 from dotenv import load_dotenv
 from llama_parse import LlamaParse
-from src.parser import DocumentParser
 from llama_index.llms.openai import OpenAI
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.core import VectorStoreIndex, Settings, SimpleDirectoryReader
