@@ -36,7 +36,7 @@ class RAGChat:
                         api_key=os.getenv("OPENAI_API_KEY")
                         )
         self.embed_model = OpenAIEmbedding(
-                                        model="text-embedding-3-large",
+                                        model="text-embedding-3-small",
                                         api_key=os.getenv("OPENAI_API_KEY")
                                         )
         
