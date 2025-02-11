@@ -1,4 +1,4 @@
-import os, sys
+import os, sys, pickle
 import streamlit as st
 from pathlib import Path
 from dotenv import load_dotenv
@@ -47,8 +47,15 @@ class RAGChat:
         Settings.chunk_overlap = 128
         
         # Load and index documents
-        self.documents = SimpleDirectoryReader(documents_path).load_data()
-        self.index = VectorStoreIndex.from_documents(self.documents)
+        index_path = "processed/index.pkl"
+        if os.path.exists(index_path):
+            with open(index_path, 'rb') as f:
+                self.index = pickle.load(f)
+        else:
+            self.documents = SimpleDirectoryReader(documents_path).load_data()
+            self.index = VectorStoreIndex.from_documents(self.documents)
+            with open(index_path, 'wb') as f:
+                pickle.dump(self.index, f)
         
         # Create query engine with response synthesis
         self.query_engine = self.index.as_query_engine(
