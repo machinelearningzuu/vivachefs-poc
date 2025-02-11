@@ -66,11 +66,11 @@ class RAGChat:
         """
         Query the RAG system with a question
         """
-        try:
-            response = self.query_engine.query(query)
-            return str(response)
-        except Exception as e:
-            return f"Error processing query: {str(e)}"
+        # try:
+        response = self.query_engine.query(query)
+        return str(response)
+        # except Exception as e:
+        #     return f"Error processing query: {str(e)}"
         
 
 
