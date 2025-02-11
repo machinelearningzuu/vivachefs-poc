@@ -13,7 +13,7 @@ load_dotenv()
 class DocumentParser:
     def __init__(self):
         self.parser = LlamaParse(
-            api_key=os.environ("LLAMA_PARSER_API_KEY"),
+            api_key=os.environ["LLAMA_PARSER_API_KEY"],
             result_type="markdown"
         )
         self.write_path = "processed/parsed_documents.md"
@@ -32,11 +32,11 @@ class RAGChat:
         self.llm = OpenAI(
                         model="gpt-4o",
                         temperature=0.7,
-                        api_key=os.environ("OPENAI_API_KEY")
+                        api_key=os.environ["OPENAI_API_KEY"]
                         )
         self.embed_model = OpenAIEmbedding(
                                         model="text-embedding-3-small",
-                                        api_key=os.environ("OPENAI_API_KEY")
+                                        api_key=os.environ["OPENAI_API_KEY"]
                                         )
         
         # Configure global settings
