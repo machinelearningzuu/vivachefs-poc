@@ -42,7 +42,7 @@ class RAGChat:
         2. if you don't find relevant information in the provided context to answer accurately and not related to the https://www.vivachefs.com website, 
         respond with:
 
-        "I apologize, but I can only assist with questions related to Viva Chefs' personal chef services, meal plans, and policies."
+        "I apologize, but I can only assist with questions related to Viva Chefs' personal chef services, meal plans, and policies. For other topics, please visit www.vivachefs.com or contact our support team at support@vivachefs.com for personalized assistance. We're here to help you with all your personal chef and meal planning needs!"
         """
         
         # Initialize OpenAI with GPT-4 and embedding models
