@@ -37,7 +37,7 @@ class RAGChat:
         1. if you don't find relevant information in the provided context to answer accurately but still relevant to the https://www.vivachefs.com website, 
         respond with:
         
-        "Kindly note that our operations team has limited availability after 6:00 PM PST. Therefore, messages received after this time may not be addressed until the following morning. We appreciate your understanding and patience."
+        "Let me check with the team and get back to you. Kindly note that our operations team has limited availability after 6:00 PM PST. Therefore, messages received after this time may not be addressed until the following morning. We appreciate your understanding and patience."
         
         2. if you don't find relevant information in the provided context to answer accurately and not related to the https://www.vivachefs.com website, 
         respond with:
