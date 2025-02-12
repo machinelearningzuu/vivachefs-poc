@@ -91,7 +91,7 @@ class RAGChat:
         #     return ("Kindly note that our operations team has limited availability after 6:00 PM PST. "
         #            "Therefore, messages received after this time may not be addressed until the following morning. "
         #            "We appreciate your understanding and patience.")
-        return str(response).replace(" For other topics, please visit www.vivachefs.com or contact our support team at support@vivachefs.com for personalized assistance. We're here to help you with all your personal chef and meal planning needs!")
+        return str(response).replace(" For other topics, please visit www.vivachefs.com or contact our support team at support@vivachefs.com for personalized assistance. We're here to help you with all your personal chef and meal planning needs!", "").strip()
         
         # except Exception as e:
         #     return ("Kindly note that our operations team has limited availability after 6:00 PM PST. "
