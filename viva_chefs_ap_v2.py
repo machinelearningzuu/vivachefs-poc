@@ -28,11 +28,29 @@ class RAGChat:
         """
         Initialize RAG chat with documents from the specified path
         """
+        self.system_prompt = """You are a helpful assistant for Viva Chefs. 
+
+        For greetings and basic interactions (like "hi", "hello", "how are you", etc.), respond naturally and warmly.
+        
+        For all other questions, 
+        
+        1. if you don't find relevant information in the provided context to answer accurately but still relevant to the https://www.vivachefs.com website, 
+        respond with:
+        
+        "Kindly note that our operations team has limited availability after 6:00 PM PST. Therefore, messages received after this time may not be addressed until the following morning. We appreciate your understanding and patience."
+        
+        2. if you don't find relevant information in the provided context to answer accurately and not related to the https://www.vivachefs.com website, 
+        respond with:
+
+        "I apologize, but I can only assist with questions related to Viva Chefs' personal chef services, meal plans, and policies. For other topics, please visit www.vivachefs.com or contact our support team at support@vivachefs.com for personalized assistance. We're here to help you with all your personal chef and meal planning needs!"
+        """
+        
         # Initialize OpenAI with GPT-4 and embedding models
         self.llm = OpenAI(
                         model="gpt-4o",
                         temperature=0.7,
-                        api_key=os.environ["OPENAI_API_KEY"]
+                        api_key=os.environ["OPENAI_API_KEY"],
+                        system_prompt=self.system_prompt
                         )
         self.embed_model = OpenAIEmbedding(
                                         model="text-embedding-3-small",
@@ -59,6 +77,7 @@ class RAGChat:
         # Create query engine with response synthesis
         self.query_engine = self.index.as_query_engine(
                                                     response_mode="compact",
+                                                    system_prompt=self.system_prompt,
                                                     streaming=True
                                                     )
         
@@ -68,10 +87,16 @@ class RAGChat:
         """
         # try:
         response = self.query_engine.query(query)
+        # if not response or getattr(response, 'confidence', 0) < 0.5:
+        #     return ("Kindly note that our operations team has limited availability after 6:00 PM PST. "
+        #            "Therefore, messages received after this time may not be addressed until the following morning. "
+        #            "We appreciate your understanding and patience.")
         return str(response)
-        # except Exception as e:
-        #     return f"Error processing query: {str(e)}"
         
+        # except Exception as e:
+        #     return ("Kindly note that our operations team has limited availability after 6:00 PM PST. "
+        #            "Therefore, messages received after this time may not be addressed until the following morning. "
+        #            "We appreciate your understanding and patience.")
 
 
 # Set page config
