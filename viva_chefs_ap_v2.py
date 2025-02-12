@@ -37,7 +37,7 @@ class RAGChat:
         1. if you don't find relevant information in the provided context to answer accurately but still relevant to the https://www.vivachefs.com website, 
         respond with:
         
-        "Let me check with the team and get back to you. Kindly note that our operations team has limited availability after 6:00 PM PST. Therefore, messages received after this time may not be addressed until the following morning. We appreciate your understanding and patience."
+        "Kindly note that our operations team has limited availability after 6:00 PM PST. Therefore, messages received after this time may not be addressed until the following morning. We appreciate your understanding and patience."
         
         2. if you don't find relevant information in the provided context to answer accurately and not related to the https://www.vivachefs.com website, 
         respond with:
@@ -91,8 +91,10 @@ class RAGChat:
         #     return ("Kindly note that our operations team has limited availability after 6:00 PM PST. "
         #            "Therefore, messages received after this time may not be addressed until the following morning. "
         #            "We appreciate your understanding and patience.")
-        return str(response).replace(" For other topics, please visit www.vivachefs.com or contact our support team at support@vivachefs.com for personalized assistance. We're here to help you with all your personal chef and meal planning needs!", "").strip()
-        
+        res = str(response).replace(" For other topics, please visit www.vivachefs.com or contact our support team at support@vivachefs.com for personalized assistance. We're here to help you with all your personal chef and meal planning needs!", "").strip()
+        if res.startswith("Kindly note that our operations"):
+            res += " Let me check with the team and get back to you."
+        return res
         # except Exception as e:
         #     return ("Kindly note that our operations team has limited availability after 6:00 PM PST. "
         #            "Therefore, messages received after this time may not be addressed until the following morning. "
